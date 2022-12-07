@@ -158,4 +158,17 @@ describe('Immutable module', () => {
     },
     mainTimeout * 10,
   );
+
+  test(
+    'should check isImmutableAccountExists',
+    async function () {
+      const result = await ImmutableLib.isImmutableAccountExists("0x7EE860cDCc157998EaEF68f6B5387DE77fe3D02F","testnet");
+
+      console.log({ result });
+      expect(result).toEqual(true);
+    },
+    mainTimeout * 10,
+  );
+
+
 });

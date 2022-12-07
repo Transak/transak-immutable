@@ -21,6 +21,26 @@ const isValidWalletAddress = (address: string) => utils.isAddress(address) as bo
 
 /**
  *
+ * @param address
+ * @param network
+ * @returns
+ */
+const isImmutableAccountExists = async (address: string, network: string) => {
+  const client = await getClient(network);
+
+  try {
+    const userData = await client.getUser(address);
+    if (userData) return true;
+  } catch (error) {
+    // if the user is not found, the getUser will throw an error
+    return false;
+  }
+
+  return false;
+};
+
+/**
+ *
  * @param txId
  * @param network
  * @returns
@@ -188,4 +208,5 @@ export = {
   isValidWalletAddress,
   sendTransaction,
   getBalance,
+  isImmutableAccountExists,
 };
