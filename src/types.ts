@@ -4,6 +4,7 @@ export type Network = {
   networkName: string;
   transactionLink: (arg0: string) => string;
   walletLink: (arg0: string) => string;
+  alchemyNetwork: string;
 };
 
 export type GetTransactionResult = {
@@ -33,7 +34,7 @@ export type SendTransactionParams = {
   privateKey: string;
   tokenAddress?: string;
   starkPrivateKey: string;
-  provider: Provider;
+  alchemyKey: string;
 };
 
 export type SendTransactionResult = {

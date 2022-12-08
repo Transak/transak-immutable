@@ -1,5 +1,6 @@
 import { utils } from 'ethers';
 import { ImmutableX, Config } from '@imtbl/core-sdk';
+import { AlchemyProvider,getDefaultProvider } from '@ethersproject/providers';
 import { networks } from './config';
 import { _toDecimal, _toCrypto, _getPublicKey } from './utils/utils';
 import { generateWalletConnection } from './utils/walletConnection';
@@ -70,6 +71,17 @@ async function getClient(network: string): Promise<any> {
 
   return client;
 }
+
+// connect provider to the network
+const getProvider = (alchemyKey: string, network: string) => {
+  const alchemyNetwork: string = getNetwork(network).alchemyNetwork;
+  if (alchemyKey) {
+    return new AlchemyProvider(alchemyNetwork, alchemyKey);
+  }
+
+  // if alchemyKey is not provided, use the default provider
+  return getDefaultProvider(alchemyNetwork);
+};
 
 /**
  * Get the balance of the transak wallet address
@@ -158,14 +170,18 @@ async function sendTransaction({
   decimals,
   tokenAddress,
   starkPrivateKey,
-  provider,
+  alchemyKey,
 }: SendTransactionParams): Promise<SendTransactionResult> {
   const client = await getClient(network);
 
   // amount in lowest denomination - tinybars in this case
   const amountInCrypto = _toCrypto(amount.toString(), decimals);
 
-  const walletConnection = await generateWalletConnection(privateKey, starkPrivateKey, provider);
+  const walletConnection = await generateWalletConnection(
+    privateKey,
+    starkPrivateKey,
+    getProvider(network, alchemyKey),
+  );
 
   // build the transfer options
   const transferOptions: any = {
