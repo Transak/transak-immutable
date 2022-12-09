@@ -73,10 +73,10 @@ async function getClient(network: string): Promise<any> {
 }
 
 // connect provider to the network
-const getProvider = (alchemyKey: string, network: string) => {
+const getProvider = (providerApiKey: string, network: string) => {
   const alchemyNetwork: string = getNetwork(network).alchemyNetwork;
-  if (alchemyKey) {
-    return new AlchemyProvider(alchemyNetwork, alchemyKey);
+  if (providerApiKey) {
+    return new AlchemyProvider(alchemyNetwork, providerApiKey);
   }
 
   // if alchemyKey is not provided, use the default provider
@@ -170,7 +170,7 @@ async function sendTransaction({
   decimals,
   tokenAddress,
   starkPrivateKey,
-  alchemyKey,
+  providerApiKey,
 }: SendTransactionParams): Promise<SendTransactionResult> {
   const client = await getClient(network);
 
@@ -180,7 +180,7 @@ async function sendTransaction({
   const walletConnection = await generateWalletConnection(
     privateKey,
     starkPrivateKey,
-    getProvider(network, alchemyKey),
+    getProvider(network, providerApiKey),
   );
 
   // build the transfer options

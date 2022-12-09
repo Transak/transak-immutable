@@ -14,7 +14,7 @@ const testData = {
   toWalletAddress: process.env.TOWALLETADDRESS || '',
   network: process.env.NETWORK || '',
   starkPrivateKey: process.env.STARK_PRIVATE_KEY || '',
-  alchemyKey: process.env.ALCHEMY_API_KEY || '',
+  providerApiKey: process.env.ALCHEMY_API_KEY || '',
   amount: 0.1,
   decimals: 18,
   //0xb3dfd3dfb829b394f2467f4396f39ece7818d876 FCT , 0x1facdd0165489f373255a90304650e15481b2c85 IMX
@@ -87,7 +87,7 @@ describe('Immutable module', () => {
         privateKey,
         tokenAddress,
         starkPrivateKey,
-        alchemyKey,
+        providerApiKey,
       } = testData;
       const result = await ImmutableLib.sendTransaction({
         to,
@@ -97,7 +97,7 @@ describe('Immutable module', () => {
         privateKey,
         tokenAddress,
         starkPrivateKey,
-        alchemyKey,
+        providerApiKey,
       });
 
       runtime.transactionHash = result.receipt.transactionHash;
@@ -119,7 +119,7 @@ describe('Immutable module', () => {
         privateKey,
         tokenAddress,
         starkPrivateKey,
-        alchemyKey,
+        providerApiKey,
       } = testData;
 
       const result = await ImmutableLib.sendTransaction({
@@ -129,7 +129,7 @@ describe('Immutable module', () => {
         decimals,
         privateKey,
         starkPrivateKey,
-        alchemyKey,
+        providerApiKey,
       });
 
       runtime.transactionHash = result.receipt.transactionHash;

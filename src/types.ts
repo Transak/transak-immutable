@@ -34,7 +34,7 @@ export type SendTransactionParams = {
   privateKey: string;
   tokenAddress?: string;
   starkPrivateKey: string;
-  alchemyKey: string;
+  providerApiKey: string;
 };
 
 export type SendTransactionResult = {
