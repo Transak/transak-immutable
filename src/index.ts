@@ -1,6 +1,6 @@
 import { utils } from 'ethers';
 import { ImmutableX, Config } from '@imtbl/core-sdk';
-import { AlchemyProvider,getDefaultProvider } from '@ethersproject/providers';
+import { AlchemyProvider, getDefaultProvider } from '@ethersproject/providers';
 import { networks } from './config';
 import { _toDecimal, _toCrypto, _getPublicKey } from './utils/utils';
 import { generateWalletConnection } from './utils/walletConnection';
