@@ -65,7 +65,7 @@ const getWalletLink = (walletAddress: string, network: string) =>
 async function getClient(network: string): Promise<any> {
   const networkName: string = getNetwork(network).networkName;
 
-  const config = networkName === 'PRODUCTION' ? Config.PRODUCTION : Config.SANDBOX;
+  const config = networkName === 'main' ? Config.PRODUCTION : Config.SANDBOX;
 
   const client = new ImmutableX(config);
 
