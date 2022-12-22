@@ -12,13 +12,13 @@ const testData = {
   publicKey: process.env.MY_PUBLIC_KEY || '',
   privateKey: process.env.MY_PRIVATE_KEY || ' ',
   toWalletAddress: process.env.TOWALLETADDRESS || '',
-  network: process.env.NETWORK || '',
+  network: process.env.NETWORK || 'testnet',
   starkPrivateKey: process.env.STARK_PRIVATE_KEY || '',
   providerApiKey: process.env.ALCHEMY_API_KEY || '',
-  amount: 0.1,
+  amount: 1,
   decimals: 18,
   //0xb3dfd3dfb829b394f2467f4396f39ece7818d876 FCT , 0x1facdd0165489f373255a90304650e15481b2c85 IMX
-  tokenAddress: '0xb3dfd3dfb829b394f2467f4396f39ece7818d876',
+  tokenAddress: '0xf57e7e7c23978c3caec3c3548e3d615c346e79ff',
 };
 
 const keys = {
@@ -156,10 +156,8 @@ describe('Immutable module', () => {
   test(
     'should check isImmutableAccountExists',
     async function () {
-      const result = await ImmutableLib.isImmutableAccountExists(
-        '0x7EE860cDCc157998EaEF68f6B5387DE77fe3D02F',
-        'testnet',
-      );
+      const { network, publicKey } = testData;
+      const result = await ImmutableLib.isImmutableAccountExists(publicKey, network);
 
       console.log({ result });
       expect(result).toEqual(true);

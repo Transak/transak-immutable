@@ -65,7 +65,7 @@ const getWalletLink = (walletAddress: string, network: string) =>
 async function getClient(network: string): Promise<any> {
   const networkName: string = getNetwork(network).networkName;
 
-  const config = networkName === 'main' ? Config.PRODUCTION : Config.SANDBOX;
+  const config = networkName === 'PRODUCTION' ? Config.PRODUCTION : Config.SANDBOX;
 
   const client = new ImmutableX(config);
 
@@ -180,7 +180,7 @@ async function sendTransaction({
   const walletConnection = await generateWalletConnection(
     privateKey,
     starkPrivateKey,
-    getProvider(network, providerApiKey),
+    getProvider(providerApiKey,network),
   );
 
   // build the transfer options
