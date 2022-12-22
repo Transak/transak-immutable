@@ -180,7 +180,7 @@ async function sendTransaction({
   const walletConnection = await generateWalletConnection(
     privateKey,
     starkPrivateKey,
-    getProvider(providerApiKey,network),
+    getProvider(providerApiKey, network),
   );
 
   // build the transfer options
